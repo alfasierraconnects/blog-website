@@ -26,7 +26,7 @@ const dummy_data = [
 function App() {
   const [blogsData, setBlogsData] = useState(dummy_data);
   const [totalBlogs, setTotalBlogs] = useState(blogsData.length);
-  const [editBlog, setEditBlog] = useState();
+  const [editBlog, setEditBlog] = useState({});
 
   const inputDataHandler = (data) => {
     console.log(data);
@@ -34,6 +34,15 @@ function App() {
       return [...prevState, data];
     });
     setTotalBlogs(blogsData.length);
+  };
+
+  const editedDataHandler = (editedData) => {
+    console.log(editedData);
+    const newList = blogsData.map((el) => {
+      return el.key === editedData.key ? editedData : el;
+    });
+    console.log(newList);
+    setBlogsData(newList);
   };
 
   const deleteBlogHandler = (id) => {
@@ -46,7 +55,6 @@ function App() {
   };
 
   const editBlogHandler = (id) => {
-    // console.log(id);
     const blogToEdit = blogsData.filter((el) => el.key === id);
     console.log(blogToEdit);
     setEditBlog(blogToEdit);
@@ -56,7 +64,11 @@ function App() {
     <>
       <h1>Blog Website</h1>
       <h3>Total Blogs: {totalBlogs}</h3>
-      <InputForm sendDataToApp={inputDataHandler} editBlog={editBlog} />
+      <InputForm
+        sendDataToApp={inputDataHandler}
+        editBlog={editBlog}
+        sendEditedDataToApp={editedDataHandler}
+      />
       <BlogsList
         blogsData={blogsData}
         deleteBlog={deleteBlogHandler}
