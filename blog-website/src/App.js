@@ -1,27 +1,7 @@
 import React, { useState } from "react";
 import InputForm from "./components/InputForm";
 import BlogsList from "./components/BlogsList";
-
-const dummy_data = [
-  {
-    key: 1,
-    url: "https://images.unsplash.com/photo-1711638241167-796a782bd3f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyM3x8fGVufDB8fHx8fA%3D%3D",
-    title: "First Blog Post",
-    description: "This is the description of the first blog post.",
-  },
-  {
-    key: 2,
-    url: "https://images.unsplash.com/photo-1682685797303-0ad51eb23e13?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D",
-    title: "Second Blog Post",
-    description: "This is the description of the second blog post.",
-  },
-  {
-    key: 3,
-    url: "https://plus.unsplash.com/premium_photo-1711477326347-721652a2a763?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMnx8fGVufDB8fHx8fA%3D%3D",
-    title: "Third Blog Post",
-    description: "This is the description of the third blog post.",
-  },
-];
+import dummy_data from "./components/data";
 
 function App() {
   const [blogsData, setBlogsData] = useState(dummy_data);
@@ -61,9 +41,13 @@ function App() {
   };
 
   return (
-    <>
-      <h1>Blog Website</h1>
-      <h3>Total Blogs: {totalBlogs}</h3>
+    <div className="bg-gradient-to-tr from-cyan-50 to-fuchsia-100">
+      <h1 className="text-4xl font-bold text-center p-4 text-teal-800">
+        BlogPulse
+      </h1>
+      <h3 className="text-xl font-semibold text-center">
+        Total Blogs: {totalBlogs}
+      </h3>
       <InputForm
         sendDataToApp={inputDataHandler}
         editBlog={editBlog}
@@ -74,7 +58,7 @@ function App() {
         deleteBlog={deleteBlogHandler}
         editBlog={editBlogHandler}
       />
-    </>
+    </div>
   );
 }
 
